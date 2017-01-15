@@ -1980,9 +1980,9 @@ sinon@^1.17.7:
     samsam "1.1.2"
     util ">=0.10.3 <1"
 
-skyrocket-engine@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/skyrocket-engine/-/skyrocket-engine-0.0.3.tgz#96ff76eb41747e2511deb814c7014e90d2208772"
+skyrocket-engine@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/skyrocket-engine/-/skyrocket-engine-0.0.4.tgz#c99511e0181580c01a5770868eb6689d6448edc7"
 
 slash@^1.0.0:
   version "1.0.0"

@@ -1,6 +1,6 @@
 {
   "name": "skyrocket-crud",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CRUD components for Skyrocket engine's schemas.",
   "main": "dist/index.js",
   "scripts": {
@@ -29,6 +29,6 @@
     "sinon-chai": "^2.8.0"
   },
   "peerDependencies": {
-    "skyrocket-engine": "^0.0.3"
+    "skyrocket-engine": "^0.0.4"
   }
 }
