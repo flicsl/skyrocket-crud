@@ -31,8 +31,6 @@ function createReducer(schema) {
             case "SR_CRUD:DELETE_" + schemaName:
                 delete state[action.id];
                 return Object.assign({}, state);
-            default:
-                return state;
         }
     };
 }

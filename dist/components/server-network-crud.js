@@ -35,12 +35,12 @@ var ServerNetworkCrud = exports.ServerNetworkCrud = function (_Component) {
 
         var notifySchemaCreated = {};
         notifySchemaCreated["SR_CRUD:NOTIFY_" + schemaName + "_CREATED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageCreated), _this._transformer.encode(event.player));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageCreated), _this._transformer.encode(event[schema.name]));
             options.sendToAll(message);
         };
         var notifySchemaUpdated = {};
         notifySchemaUpdated["SR_CRUD:NOTIFY_" + schemaName + "_UPDATED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageUpdated), _this._transformer.encode(event.player));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageUpdated), _this._transformer.encode(event[schema.name]));
             options.sendToAll(message);
         };
         var notifySchemaDeleted = {};
