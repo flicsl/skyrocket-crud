@@ -30,22 +30,22 @@ var ServerNetworkCrud = exports.ServerNetworkCrud = function (_NetworkComponent)
             throw new Error("options.sendToAll is not a function!");
         }
 
-        _this._transformer = _skyrocketEngine.TransformerFactory.create(schema);
+        var _transformer = _skyrocketEngine.TransformerFactory.create(schema);
         var schemaName = schema.name.toUpperCase();
 
         var notifySchemaCreated = {};
         notifySchemaCreated["SR_CRUD:NOTIFY_" + schemaName + "_CREATED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageCreated), this._transformer.encode(event[schema.name]));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageCreated), _transformer.encode(event[schema.name]));
             options.sendToAll(message);
         };
         var notifySchemaUpdated = {};
         notifySchemaUpdated["SR_CRUD:NOTIFY_" + schemaName + "_UPDATED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageUpdated), this._transformer.encode(event[schema.name]));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageUpdated), _transformer.encode(event[schema.name]));
             options.sendToAll(message);
         };
         var notifySchemaDeleted = {};
         notifySchemaDeleted["SR_CRUD:NOTIFY_" + schemaName + "_DELETED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageDeleted), this._transformer.encodeAttribute("id", event.id));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageDeleted), _transformer.encodeAttribute("id", event.id));
             options.sendToAll(message);
         };
         _this.registerEventListeners(Object.assign({}, notifySchemaCreated, notifySchemaUpdated, notifySchemaDeleted));

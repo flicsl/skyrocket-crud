@@ -27,21 +27,15 @@ describe("ClientNetworkCrud", () => {
     });
 
     it("should fire SR_CRUD:NETWORK_<schema>_CREATED on messageCreated", () => {
-        const parent = new Component();
-        parent.addChild(component);
-
         const callback = spy();
         const obj = {
             id: 221,
             x: 44411,
             y: 11200
         };
-        parent.registerEventListeners({
-            "SR_CRUD:NETWORK_PLAYER_CREATED": callback
-        });
 
         const message = BufferUtils.concat(new Uint8Array([0]), transformer.encode(obj));
-        component.getMessageHandler(options.messageCreated)(message);
+        component.getMessageHandler(options.messageCreated).call({emit: callback}, message);
 
         expect(callback).to.have.been.calledWith({
             type: "SR_CRUD:NETWORK_PLAYER_CREATED",
@@ -50,21 +44,15 @@ describe("ClientNetworkCrud", () => {
     });
 
     it("should fire SR_CRUD:NETWORK_<schema>_UPDATED on messageUpdated", () => {
-        const parent = new Component();
-        parent.addChild(component);
-
         const callback = spy();
         const obj = {
             id: 221,
             x: 44411,
             y: 11200
         };
-        parent.registerEventListeners({
-            "SR_CRUD:NETWORK_PLAYER_UPDATED": callback
-        });
 
         const message = BufferUtils.concat(new Uint8Array([0]), transformer.encode(obj));
-        component.getMessageHandler(options.messageUpdated)(message);
+        component.getMessageHandler(options.messageUpdated).call({emit: callback}, message);
 
         expect(callback).to.have.been.calledWith({
             type: "SR_CRUD:NETWORK_PLAYER_UPDATED",
@@ -73,17 +61,11 @@ describe("ClientNetworkCrud", () => {
     });
 
     it("should fire SR_CRUD:NETWORK_<schema>_DELETED on messageDeleted", () => {
-        const parent = new Component();
-        parent.addChild(component);
-
         const callback = spy();
         const id = 254;
-        parent.registerEventListeners({
-            "SR_CRUD:NETWORK_PLAYER_DELETED": callback
-        });
 
         const message = BufferUtils.concat(new Uint8Array([0]), transformer.encodeAttribute("id", id));
-        component.getMessageHandler(options.messageDeleted)(message);
+        component.getMessageHandler(options.messageDeleted).call({emit: callback}, message);
 
         expect(callback).to.have.been.calledWith({
             type: "SR_CRUD:NETWORK_PLAYER_DELETED",

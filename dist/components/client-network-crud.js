@@ -27,11 +27,11 @@ var ClientNetworkCrud = exports.ClientNetworkCrud = function (_NetworkComponent)
 
         (0, _utils.assertValidNetworkCrudOptions)(options);
 
-        _this._transformer = _skyrocketEngine.TransformerFactory.create(schema);
+        var _transformer = _skyrocketEngine.TransformerFactory.create(schema);
         var schemaName = schema.name.toUpperCase();
         var createdHandler = {};
         createdHandler[options.messageCreated] = function (message) {
-            var obj = this._transformer.decode(message, 1);
+            var obj = _transformer.decode(message, 1);
             var evt = {
                 type: "SR_CRUD:NETWORK_" + schemaName + "_CREATED"
             };
@@ -40,7 +40,7 @@ var ClientNetworkCrud = exports.ClientNetworkCrud = function (_NetworkComponent)
         };
         var updatedHandler = {};
         updatedHandler[options.messageUpdated] = function (message) {
-            var obj = this._transformer.decode(message, 1);
+            var obj = _transformer.decode(message, 1);
             var evt = {
                 type: "SR_CRUD:NETWORK_" + schemaName + "_UPDATED"
             };
@@ -49,7 +49,7 @@ var ClientNetworkCrud = exports.ClientNetworkCrud = function (_NetworkComponent)
         };
         var deletedHandler = {};
         deletedHandler[options.messageDeleted] = function (message) {
-            var id = this._transformer.decodeAttribute("id", message, 1);
+            var id = _transformer.decodeAttribute("id", message, 1);
             var evt = {
                 type: "SR_CRUD:NETWORK_" + schemaName + "_DELETED",
                 id: id
