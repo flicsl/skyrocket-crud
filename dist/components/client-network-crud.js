@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ClientNetworkCrud = undefined;
 
-var _networkComponent = require("./network-component");
-
 var _skyrocketEngine = require("skyrocket-engine");
 
 var _utils = require("./utils");
@@ -65,4 +63,4 @@ var ClientNetworkCrud = exports.ClientNetworkCrud = function (_NetworkComponent)
     }
 
     return ClientNetworkCrud;
-}(_networkComponent.NetworkComponent);
+}(_skyrocketEngine.NetworkComponent);
