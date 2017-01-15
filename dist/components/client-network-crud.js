@@ -31,33 +31,32 @@ var ClientNetworkCrud = exports.ClientNetworkCrud = function (_NetworkComponent)
         var schemaName = schema.name.toUpperCase();
         var createdHandler = {};
         createdHandler[options.messageCreated] = function (message) {
-            var obj = _this._transformer.decode(message, 1);
+            var obj = this._transformer.decode(message, 1);
             var evt = {
                 type: "SR_CRUD:NETWORK_" + schemaName + "_CREATED"
             };
             evt[schema.name] = obj;
-            _this.emit(evt);
+            this.emit(evt);
         };
         var updatedHandler = {};
         updatedHandler[options.messageUpdated] = function (message) {
-            var obj = _this._transformer.decode(message, 1);
+            var obj = this._transformer.decode(message, 1);
             var evt = {
                 type: "SR_CRUD:NETWORK_" + schemaName + "_UPDATED"
             };
             evt[schema.name] = obj;
-            _this.emit(evt);
+            this.emit(evt);
         };
         var deletedHandler = {};
         deletedHandler[options.messageDeleted] = function (message) {
-            var id = _this._transformer.decodeAttribute("id", message, 1);
+            var id = this._transformer.decodeAttribute("id", message, 1);
             var evt = {
                 type: "SR_CRUD:NETWORK_" + schemaName + "_DELETED",
                 id: id
             };
-            _this.emit(evt);
+            this.emit(evt);
         };
 
-        createdHandler[options.messageUpdated];
         _this.registerMessageHandlers(Object.assign({}, createdHandler, updatedHandler, deletedHandler));
         return _this;
     }

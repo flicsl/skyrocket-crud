@@ -15,8 +15,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ServerNetworkCrud = exports.ServerNetworkCrud = function (_Component) {
-    _inherits(ServerNetworkCrud, _Component);
+var ServerNetworkCrud = exports.ServerNetworkCrud = function (_NetworkComponent) {
+    _inherits(ServerNetworkCrud, _NetworkComponent);
 
     function ServerNetworkCrud(schema) {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -35,17 +35,17 @@ var ServerNetworkCrud = exports.ServerNetworkCrud = function (_Component) {
 
         var notifySchemaCreated = {};
         notifySchemaCreated["SR_CRUD:NOTIFY_" + schemaName + "_CREATED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageCreated), _this._transformer.encode(event[schema.name]));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageCreated), this._transformer.encode(event[schema.name]));
             options.sendToAll(message);
         };
         var notifySchemaUpdated = {};
         notifySchemaUpdated["SR_CRUD:NOTIFY_" + schemaName + "_UPDATED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageUpdated), _this._transformer.encode(event[schema.name]));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageUpdated), this._transformer.encode(event[schema.name]));
             options.sendToAll(message);
         };
         var notifySchemaDeleted = {};
         notifySchemaDeleted["SR_CRUD:NOTIFY_" + schemaName + "_DELETED"] = function (event) {
-            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageDeleted), _this._transformer.encodeAttribute("id", event.id));
+            var message = _skyrocketEngine.BufferUtils.concat(_skyrocketEngine.BufferUtils.toUint8(options.messageDeleted), this._transformer.encodeAttribute("id", event.id));
             options.sendToAll(message);
         };
         _this.registerEventListeners(Object.assign({}, notifySchemaCreated, notifySchemaUpdated, notifySchemaDeleted));
@@ -53,4 +53,4 @@ var ServerNetworkCrud = exports.ServerNetworkCrud = function (_Component) {
     }
 
     return ServerNetworkCrud;
-}(_skyrocketEngine.Component);
+}(_skyrocketEngine.NetworkComponent);
