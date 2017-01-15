@@ -29,6 +29,6 @@
     "sinon-chai": "^2.8.0"
   },
   "peerDependencies": {
-    "skyrocket-engine": "^0.0.2"
+    "skyrocket-engine": "^0.0.3"
   }
 }
