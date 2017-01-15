@@ -17,10 +17,6 @@ describe("Reducers", () => {
         reducer = createReducer(schema);
     });
 
-    it("should never return undefined", () => {
-        expect(reducer(undefined, {type: undefined})).to.be.ok;
-    });
-
     it("should add schema object to state", () => {
         const action = {
             type: "SR_CRUD:CREATE_PLAYER",

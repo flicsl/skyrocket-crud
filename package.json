@@ -1,6 +1,6 @@
 {
   "name": "skyrocket-crud",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CRUD components for Skyrocket engine's schemas.",
   "main": "dist/index.js",
   "scripts": {
